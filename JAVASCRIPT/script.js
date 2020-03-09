@@ -149,3 +149,130 @@ function currentDayString()
     return dateString;
 }
 console.log('The current date is :/r/n' + currentDayString());
+
+/**Lets review some conditions related operators */
+
+//check for wquivalwncy (type-agnostic.)
+console.log(1==true);//True
+console.log('Hello, World!' ==  true);
+console.log('test'=='test');
+console.log(-137 ==true);
+console.log( 0==false); //TRUE
+console.log('TEST-STRING'=='TEST-STRING');
+
+//check if identical (value comparison including type.)
+console.log(1===true);//False
+console.log('' ===true);//False
+console.log(-137===true);//False
+console.log('test' === 'test');//true
+console.log (36 === '36');//False
+console.log(0===false);//False
+
+//Lets grab our Menu
+var myNav = document.querySelector('nav');
+
+//Add our menu button...
+
+var myNavButton = document.querySelector('.menu-button');
+//Lets listen for a click on this
+
+myNavButton.addEventListener('click', function(event)
+{
+    //when clicked, add/remove the nav-open class(in HTML)
+    //toggling between two states
+    myNavButton.classList.toggle('nav-open');
+});
+
+/**
+ * Lets dig in to objects
+ */
+/*JavaScript Option Notation (JSON)*/
+ var myObject=
+ { /*Valid JSON format*/
+     name: 'Tee',
+     age: 61,
+     hobbies: [
+         'snowboarding',
+         'action movies'
+     ]
+ };
+
+ console.log('object "name":  '+myObject.name);
+ console.log('Object "age":' +myObject,age);
+ console.log('object "hobbies":' +myObject.hobbies[0] + ',' + myObject[1]);
+
+ //lets add to the hobbies array...just like normal! It is an array, afterall. Just stored in an object property instead of a variable this time.)*/
+ myObject.hobbies.push('programming');
+ console.log('updated hobbies:');
+ console.log(myObject.hobbies);
+
+ console.log('update object:');
+ console.log(myObject);
+
+ /*lets ramp things up a bit with a method.
+ */
+
+ var newObject = {
+     myNum: 5,
+     updateNum: function ()
+     {
+         //Here is a method! Note the new syntax, versus a function.
+         //Difference from a function?
+         this.myNum=this.myNum+5;
+         return this.myNum;
+     }
+
+ };
+
+
+ /**
+  * Object constructors.
+  */
+
+  function person (name, age, hobbies)
+  {
+      this.name=name;
+      this.age=age;
+      this.hobbies= hobbies;
+      this.sayGoodbye = function (){
+          document.body.innerHTML +=`
+       <p>
+          This is <strong>` + this.name + `</strong>, saying <em>goodbye</em>!
+
+        </p>
+        `;
+      };
+
+
+          
+          
+      }
+  
+
+  var jerry = new person('Jerry', 61, ['snowboarding',  'action movies', 'programming']);
+  var Sally = new person('Sally', 36, ['daredevil biking' , 'skydiving', 'teaching']);
+
+  //we can add to the blueprint using "prototype", even after its initial declaration.
+
+  person.prototype.introduction = function(){
+      var hobbiesString = '<ul>'; //set up for list HTML
+      this.hobbies.forEach(function(value, index){
+        hobbiesString += '<li>' + value + '<li>';//loop through our hobbies anc make a list item for each.
+  });
+
+  //Add HTML to the body
+
+  hobbiesString += '</ul>';//We opened a UL in this string, so lets close it!(Concatenation)
+
+  //Add HTML to the body
+      document.body.innerHTML += `
+      <h2>`+ this.name +` </h2>
+      <dl>
+          <dt>Age</dt>
+          <dd>` +this.age +`</dd>
+          <dt>Hobbies</dt>
+          <dd>` + hobbiesString + `</dd>
+          
+      </dl> 
+      `;
+}
