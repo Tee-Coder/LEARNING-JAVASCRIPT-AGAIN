@@ -276,3 +276,7 @@ myNavButton.addEventListener('click', function(event)
       </dl> 
       `;
 }
+
+person.prototype.nickname ='';
+jerry.nickname = 'The Big Jare';
+Sally.nickname = 'Sallers';
